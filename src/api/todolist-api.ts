@@ -13,22 +13,29 @@ export const TodolistAPI = {
     return instance.get<TodolistType[]>('todo-lists')
   },
   createTodolist: (title: string) => {
-    return instance.post('todo-lists', { title })
+    return instance.post<UnionResponseType<{ item: TodolistType }>>('todo-lists', { title })
   },
   deleteTodolist: (todolistId: string) => {
-    return instance.delete(`todo-lists/${todolistId}`)
+    return instance.delete<UnionResponseType>(`todo-lists/${todolistId}`)
   },
   updateTodolist: (todolistId: string, title: string) => {
-    return instance.put(`todo-lists/${todolistId}`, {
+    return instance.put<UnionResponseType>(`todo-lists/${todolistId}`, {
       title,
     })
   },
 }
 
 //types
-type TodolistType = {
+export type TodolistType = {
   id: string
   addedDate: Date
   order: number
   title: string
+}
+
+export type UnionResponseType<T = {}> = {
+  data: T
+  messages: string[]
+  fieldsErrors: string[]
+  resultCode: number
 }
