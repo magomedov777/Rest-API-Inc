@@ -1,13 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios'
+import { TodolistType, UnionResponseType } from '../types'
+import { instance } from '../common-utills/instance'
 
-const instance = axios.create({
-  baseURL: 'https://social-network.samuraijs.com/api/1.1/',
-  withCredentials: true,
-  headers: {
-    'API-KEY': '851ccd71-58c3-4f92-b794-f803a4080a69',
-  },
-})
 export const TodolistAPI = {
   getTodolists: () => {
     return instance.get<TodolistType[]>('todo-lists')
@@ -23,19 +18,4 @@ export const TodolistAPI = {
       title,
     })
   },
-}
-
-//types
-export type TodolistType = {
-  id: string
-  addedDate: Date
-  order: number
-  title: string
-}
-
-export type UnionResponseType<T = {}> = {
-  data: T
-  messages: string[]
-  fieldsErrors: string[]
-  resultCode: number
 }
