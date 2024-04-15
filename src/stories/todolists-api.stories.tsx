@@ -1,6 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { TodolistAPI } from '../api/todolist-api'
 
